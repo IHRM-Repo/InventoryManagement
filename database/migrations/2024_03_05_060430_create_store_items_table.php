@@ -14,13 +14,16 @@ return new class extends Migration
         Schema::create('store_items', function (Blueprint $table) {
             $table->id();
             $table->string('serial_no')->nullable();
-            $table->string('item_name');
-            $table->string('category');
-            $table->string('asset_code');
+            $table->string('item_name')->nullable();
+            $table->string('category')->nullable();
+            $table->string('asset_code')->nullable();
             // $table->integer('quantity');
-            // $table->float('depreciation_rate'); 
-            $table->string('location');         
-            $table->boolean('acquired')->default(true);
+            $table->float('depreciation_rate')->nullable();
+            $table->decimal('purchase_amount')->nullable(); 
+            $table->string('location')->nullable();         
+            $table->boolean('acquired')->nullable()->default(true);
+            $table->decimal('quantity')->nullable();
+            $table->string('type')->nullable();
             $table->string('description')->nullable();
         });
     }

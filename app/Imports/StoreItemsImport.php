@@ -28,6 +28,8 @@ class StoreItemsImport implements ToCollection
                 'location'    => $row[4],
                 'description' => $row[5],
                 'acquired'    => $row[6],
+                'quantity'    => $row[7],
+                'type'        => $row[8]
             ]);
             
             StoreItemDates::create([

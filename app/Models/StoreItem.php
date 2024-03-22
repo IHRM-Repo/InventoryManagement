@@ -11,7 +11,7 @@ class StoreItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['serial_no','item_name','asset_code','category', 'location', 'acquired'];
+    protected $fillable = ['serial_no','item_name','asset_code','category', 'location', 'acquired', 'quantity', 'type'];
     protected $guarded = ['id'];
     
     public function storeItemDates(): HasMany

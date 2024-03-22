@@ -1,35 +1,37 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import * as d3 from 'd3';
+import interpolateColors from '@/utils/ColorGeneration';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 const Chart = ({chartItems}) => {
-  const colors = []
-  const generateColors = () => {
-    for(let i=0;i<Object.keys(chartItems).length;i++)
-    {
-      colors.push('#'+Math.floor(Math.random()*16777215).toString(16));
-    }
-  }
-generateColors()
+  const colorScale = d3.interpolateRainbow;
+  const colorRangeInfo = {
+    colorStart: 0,
+    colorEnd: 1,
+    useEndAsStart: false,
+  }; 
+  const dataLength = Object.keys(chartItems).length;
 
-console.log(Object.keys(chartItems).length)
-    const data = {
-        labels: Object.keys(chartItems),
-        datasets: [{
-          label: 'No. of Items',
-          data: Object.values(chartItems),
-          backgroundColor: colors,
-          hoverOffset: 4
-        }]
-    };
+  const colors = interpolateColors(dataLength, colorScale, colorRangeInfo);
+  
+  const data = {
+    labels: chartItems.map(c => c.type),
+    datasets: [{
+      label: 'No. of Items',
+      data: chartItems.map(c => c.total),
+      backgroundColor: colors,
+      hoverOffset: 4
+    }]
+  };
     
-    return(
-        <div className='m-2 w-full'>
-            <Doughnut data={data} />
-        </div>
-    )
+  return(
+    <div className='m-2 w-full'>
+      <Doughnut data={data} />
+    </div>
+  )
 }
 
 export default Chart;

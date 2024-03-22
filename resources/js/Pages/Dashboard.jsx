@@ -6,7 +6,7 @@ import AddItemFormModal from './Modals/AddItemFormModal';
 import { useForm } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 
-const Dashboard = ({ store, lowStore, units, message }) => { 
+const Dashboard = ({ store, chartData, units, message }) => { 
     const [ addNewItemBtn, setAddNewItemBtn ] = useState(false)  
     const [ isAlertVisible, setIsAlertVisible] = useState(false)
     const [ searchFilterItems, setSearchFilterItems ] = useState([store])
@@ -33,16 +33,16 @@ const Dashboard = ({ store, lowStore, units, message }) => {
     }, [message])
 
     // finding sum of quantity of store items by category
-    const chartData = store.reduce((object, item) => {
-        let category = item.category;
-        let quantity = item.quantity;
-        if (!object.hasOwnProperty(category)) {
-          object[category] = 0;
-        }
+    // const chartData = store.reduce((object, item) => {
+    //     let category = item.category;
+    //     let quantity = item.quantity;
+    //     if (!object.hasOwnProperty(category)) {
+    //       object[category] = 0;
+    //     }
         
-        object[category] += quantity;
-        return object;
-    }, {});
+    //     object[category] += quantity;
+    //     return object;
+    // }, {});
    
     const handleAddItemModal = () => {
         setAddNewItemBtn(true)
@@ -95,7 +95,7 @@ const Dashboard = ({ store, lowStore, units, message }) => {
             </div>
 
             <div className="flex flex-col bg-white rounded-md lg:flex-row gap-4">
-                {/* <Chart chartItems={chartData}/> */}
+                <Chart chartItems={chartData}/>
                 <div className='mt-12 mx-8 mb-4'>
                     <h2 className='text-center'>Items Below 10</h2>
                     <hr className='mx-4 border-2 border-black  mb-4'></hr>
@@ -154,7 +154,7 @@ const Dashboard = ({ store, lowStore, units, message }) => {
            
                 <div className='grid overflow-x-auto'>
                     {store.length > 0 ? 
-                        <Table dataItems={search(store)} actionItems={storeItemsBtns} itemsPerPage={5}/>
+                        <Table dataItems={search(store)} actionItems={storeItemsBtns} itemsPerPage={10}/>
                         :<p>No data available.</p>
                     } 
                 </div>

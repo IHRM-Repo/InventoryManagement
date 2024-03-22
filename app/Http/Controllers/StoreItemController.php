@@ -6,6 +6,7 @@ use App\Models\Unit;
 use App\Models\StoreItem;
 use App\Models\StoreItemDates;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class StoreItemController extends Controller
@@ -15,15 +16,18 @@ class StoreItemController extends Controller
      */
     public function index()
     {
+
         return Inertia::render('Home', [
-            'storeItems' => StoreItem::select('id','item_name', 'category', 'location')
-                                        
+            'storeItems' => StoreItem::select('id','item_name', 'category', 'location')                                        
                                         ->get(),
             // 'lowStoreItems' => StoreItem::select('id','item_name', 'category', 'location')
             //                                 ->orderBy('quantity', 'asc')
             //                                 ->where('quantity', '<', '30')
             //                                 ->get(),
             // 'units' => Unit::select('unit', 'unit_size')->get(),
+
+            'chart' => StoreItem::groupBy('type')->select('type', DB::raw('count(*) as total'))->whereNotNull('type')->get(),
+
         ]);
     }
 
