@@ -6,7 +6,7 @@ const Layout = ({children}) => {
         <>
             <Head title='Store Management'/>
             <h1 className='text-center text-lg p-2 text-blue-400'>IHRM Store Management</h1>            
-            <main className='flex flex-col justify-center bg-yellow-600  md:gap-8 lg:flex-row'>
+            <main className='flex flex-col justify-center h-full w-screen bg-yellow-600 md:gap-4 md:flex-row'>
                 <Navbar/>   
                 {children}    
             </main>   

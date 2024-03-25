@@ -6,9 +6,7 @@ import { usePage } from '@inertiajs/react';
 
 
 const Home = ({storeItems, chart, units }) => {
-    const message = usePage().props.flash.message;
-
-   
+    const message = usePage().props.flash.message;   
     
     return (
        <Layout children={<Dashboard store={storeItems} chartData={chart} units={units} message={message}/> }/>

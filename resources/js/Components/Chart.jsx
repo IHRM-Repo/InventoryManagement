@@ -24,12 +24,23 @@ const Chart = ({chartItems}) => {
       data: chartItems.map(c => c.total),
       backgroundColor: colors,
       hoverOffset: 4
-    }]
+    }],
+
+  };
+
+  const options = {
+    plugins: {
+      legend: {
+        labels: {
+          position: 'right'
+        }
+      }
+    }
   };
     
   return(
-    <div className='m-2 w-full'>
-      <Doughnut data={data} />
+    <div className='bg-white rounded-md m-2'>
+      <Doughnut data={data} options={options} />
     </div>
   )
 }

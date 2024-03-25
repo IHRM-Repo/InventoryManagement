@@ -126,18 +126,8 @@ const AddItemFormModal = ({ isOpen, onClose, categoryOptions, units }) => {
                                                             <InputError className="mt-2" message={errors.category} />                    
                                                         </div>   
                                                         
-                                                        <div className='space-x-2 mt-14 sm:mt-8'>
-                                                            <input type='checkbox' onChange={(e) => setIsUnitVisible(e.target.checked)} className='border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring' value={data.returnable} />
-                                                            <InputLabel className='text-xs sm:text-md' htmlFor="returnable" value="Does this item have a unit?" />
-                                                        </div> 
-                                                        <div className={`mt-8 ${isUnitVisible ? 'block' : 'hidden'}`}>
-                                                            <select className='rounded-md border-gray-200' value={data.unit} onChange={(e) => setData('unitMeasurement', e.target.value)}>
-                                                                <option value=''>Select unit</option>
-                                                                {units.map((u, index) =>                                 
-                                                                    <option key={index} value={u.unit}>{u.unit}</option>
-                                                                )}
-                                                            </select> 
-                                                        </div>  
+                                                        
+                                                       
                                                          
                                                         <div>
                                                             <InputLabel htmlFor="quantity" value="Quantity" />
