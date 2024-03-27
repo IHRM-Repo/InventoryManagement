@@ -3,7 +3,6 @@ import Pagination from '@/Components/Pagination';
 import Modal from '@/Components/Modal';
 import { Link } from '@inertiajs/react';
 import { useState } from 'react';
-import EditFormModal from '@/Pages/Modals/EditFormModal';
 
 const Table = ({dataItems, itemsPerPage, actionItems=null}) => { 
     const [currentPage, setCurrentPage] = useState(1)     
@@ -52,7 +51,7 @@ const Table = ({dataItems, itemsPerPage, actionItems=null}) => {
     return (       
         <>
             {dataItems.length ?
-                <div>
+                <div className='rounded-md'>
                     <table className="table-auto overflow-x-auto">
                         <thead className='border-b mb-8 border-gray-200'>
                             <tr>

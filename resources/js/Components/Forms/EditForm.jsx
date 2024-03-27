@@ -47,7 +47,7 @@ const EditForm = ({item, units, selectedUnit}) => {
     };
 
     return(
-        <section className='flex flex-col bg-white rounded-md w-auto  sm:w-2/3 my-4 mx-2 p-2'>
+        <section className='flex flex-col h-screen bg-white rounded-md w-auto  sm:w-2/3 my-4 mx-2 p-2'>
             <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                 <h3 className="mt-4 text-base text-center border-b mb-8 border-gray-200 font-semibold leading-6 text-gray-900">
                     Edit Item

@@ -3,10 +3,10 @@ import { Doughnut } from 'react-chartjs-2';
 import * as d3 from 'd3';
 import interpolateColors from '@/utils/ColorGeneration';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip );
 
 
-const Chart = ({chartItems}) => {
+const Chart = ({chartItems , title}) => {
   const colorScale = d3.interpolateRainbow;
   const colorRangeInfo = {
     colorStart: 0,
@@ -16,6 +16,8 @@ const Chart = ({chartItems}) => {
   const dataLength = Object.keys(chartItems).length;
 
   const colors = interpolateColors(dataLength, colorScale, colorRangeInfo);
+
+  
   
   const data = {
     labels: chartItems.map(c => c.type),
@@ -25,22 +27,22 @@ const Chart = ({chartItems}) => {
       backgroundColor: colors,
       hoverOffset: 4
     }],
-
-  };
-
-  const options = {
-    plugins: {
-      legend: {
-        labels: {
-          position: 'right'
+    options: {
+      plugins: {
+        legend: {
+          display: true,
+          position: 'right',
+          align: 'start'
         }
       }
     }
   };
-    
+
+  
   return(
-    <div className='bg-white rounded-md m-2'>
-      <Doughnut data={data} options={options} />
+    <div className='bg-white rounded-md p-8 m-2 w-1/2'>
+      <h3 className='text-center p-4'>{title}</h3>
+      <Doughnut data={data} />
     </div>
   )
 }

@@ -11,7 +11,10 @@ class StoreItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['serial_no','item_name','asset_code','category', 'location', 'acquired', 'quantity', 'type'];
+    protected $fillable = ['serial_no','item_name','asset_code','category', 'location', 'acquired', 'quantity', 'sub_category_name'];
+    protected $attributes = [
+        'acquired' => true,
+    ];
     protected $guarded = ['id'];
     
     public function storeItemDates(): HasMany
@@ -19,9 +22,9 @@ class StoreItem extends Model
         return $this->hasMany(StoreItemDates::class);
     }
 
-    public function storeItemUnits(): HasOne
+    public function storeItemCategory(): HasOne
     {
-        return $this->hasOne(Unit::class);
+        return $this->hasOne(StoreItemCategory::class);
     }
     
     public $timestamps = false;

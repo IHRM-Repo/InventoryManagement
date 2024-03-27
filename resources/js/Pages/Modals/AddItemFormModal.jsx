@@ -6,11 +6,11 @@ import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 
-const AddItemFormModal = ({ isOpen, onClose, categoryOptions, units }) => {
+const AddItemFormModal = ({ isOpen, onClose, categoryOptions }) => {
    
     // if (!isOpen) return null;
     const cancelButtonRef = useRef(null)
-    const[isUnitVisible, setIsUnitVisible] = useState(false);
+   
    
 
 
@@ -23,8 +23,11 @@ const AddItemFormModal = ({ isOpen, onClose, categoryOptions, units }) => {
         remarks: '',
         returnable: false,
         deliveryDate: '',
-        unitMeasurement: '',
-        unitSize: ''
+        purchaseAmount: '',
+        location: '',
+        acquired: '',
+        type: '',
+        condition: '',        
     });
 
     const submit = (e) => {

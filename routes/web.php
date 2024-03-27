@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\StoreItemController;
 use App\Http\Controllers\ExcelFileImportController;
 use Illuminate\Foundation\Application;
@@ -26,6 +27,7 @@ Route::group([], function () {
     Route::patch('{id}', [StoreItemController::class, 'update'])->name('item.update');
     Route::delete('/delete/{id}', [StoreItemController::class, 'destroy'])->name('item.destroy');
 });
+Route::get('/reports', [ReportsController::class, 'index'])->name('report');
 
 Route::post('/import-excel', [ExcelFileImportController::class, 'upload'])->name('excel.upload');
 // Route::resource('/dashboard', StoreItemController::class);

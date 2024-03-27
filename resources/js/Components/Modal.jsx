@@ -1,9 +1,6 @@
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import EditFormModal from '@/Pages/Modals/EditFormModal';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import AddItemFormModal from '@/Pages/Modals/AddItemFormModal';
-import ViewItemModal from '@/Pages/Modals/ViewItemModal';
 import DeleteItemModal from '@/Pages/Modals/DeleteItemModal';
 
 const Modal = ({ isOpen, onClose, modalType, options, id }) => {  

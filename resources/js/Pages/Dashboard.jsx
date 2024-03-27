@@ -87,13 +87,13 @@ const Dashboard = ({ store, chartData, units, message }) => {
     }
       
     return(
-        <section className='flex flex-col m-4'>
+        <section className='flex flex-col m-4 p-2'>
             <div className={`bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3 ${isAlertVisible ? 'block' : 'hidden'}`} role="alert">
                 <p className="font-bold">Informational message</p>
                 <p className="text-sm">{message}</p>
             </div>   
             <div className="flex flex-col lg:flex-row gap-2">
-                <Chart chartItems={chartData}/>
+                <Chart chartItems={chartData} title='Store Items by Category'/>
                 <div className='bg-white rounded-md m-2'>
                     <h2 className='text-center'>Items Below 10</h2>
                     <hr className='mx-4 border-2 border-black  mb-4'></hr>
@@ -105,8 +105,8 @@ const Dashboard = ({ store, chartData, units, message }) => {
                    </div>                                                       */}
                 </div>                
             </div>
-            <div className='flex flex-col m-2 bg-white rounded-md'>
-                <h2 className='text-center text-lg'>Items in Store</h2>
+            <div className='flex flex-col m-2 p-2 bg-white rounded-md'>
+                <h2 className='text-center text-lg mb-2'>Items in Store</h2>
                 <div className='flex flex-col gap-4 sm:flex-row justify-between mx-2'>   
                     <div className='flex flex-row gap-2'>
                         <select 
@@ -156,7 +156,7 @@ const Dashboard = ({ store, chartData, units, message }) => {
                 } 
             </div>
            
-            {/* <AddItemFormModal isOpen={addNewItemBtn} onClose={handleAddItemModalClose} categoryOptions={categoryOptions} units={units}/> */}
+            <AddItemFormModal isOpen={addNewItemBtn} onClose={handleAddItemModalClose} categoryOptions={categoryOptions} units={units}/>
         </div>
                       
         </section>
