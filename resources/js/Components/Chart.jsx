@@ -40,7 +40,7 @@ const Chart = ({chartItems , title}) => {
 
   
   return(
-    <div className='bg-white rounded-md p-8 m-2 w-1/2'>
+    <div className='bg-white rounded-md p-8 m-2 md:w-1/2'>
       <h3 className='text-center p-4'>{title}</h3>
       <Doughnut data={data} />
     </div>
