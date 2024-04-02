@@ -6,7 +6,13 @@ const InventoryReport = () => {
     return(
         <div>
             <Head title='Reports'/>
-            <Layout children={<h1 className="mt-10">Reports</h1>}/>
+            <Layout>
+                <div className="my-8">
+                    <div className="my-2 border-2 border-black">
+                        <p>Stock levels</p>
+                    </div>
+                </div>
+            </Layout>
         </div>
     )
 }

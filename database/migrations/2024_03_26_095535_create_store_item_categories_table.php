@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('store_item_categories', function (Blueprint $table) {
             $table->id();
+            $table->integer('asset_id');
             $table->string('category_name');
-            $table->integer('store_item_id');
             $table->string('sub_category_name');
-            // $table->timestamps();
         });
     }
 

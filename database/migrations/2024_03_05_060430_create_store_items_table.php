@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('item_name')->nullable();
             $table->string('category')->nullable();
             $table->string('asset_code')->nullable();
-            // $table->integer('quantity');
             $table->float('depreciation_rate')->nullable();
             $table->decimal('purchase_amount')->nullable(); 
             $table->string('location')->nullable();         

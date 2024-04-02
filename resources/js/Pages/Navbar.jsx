@@ -1,3 +1,4 @@
+import DropdownNavLink from "@/Components/DropdownNavLink";
 import { HomeIcon, DocumentChartBarIcon, Cog6ToothIcon } from "@heroicons/react/20/solid";
 import {  Link } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
@@ -5,7 +6,27 @@ import { useState } from "react";
 
 const Navbar = () => {
     const { url } = usePage();
-    const [ isActive, setIsActive ] = useState('')
+    const [ isDropDownVisible, setIsDropDownVisible ] = useState(false)
+
+    const handleMouseEnter = () => {
+        setIsDropDownVisible(true)
+    }
+
+    const handleMouseLeave = () => {
+        setIsDropDownVisible(false)
+    }
+
+    const reportLinks = [
+        {
+            tag: '/reports/inventory',
+            name: 'Inventory Report'
+        },
+        {
+            tag: 'reports/stock',
+            name: 'Stock Report'
+        }
+
+    ]
 
 
 
@@ -13,18 +34,27 @@ const Navbar = () => {
         <div className="hidden bg-white my-8 mx-2 p-2 rounded-md md:flex">
             <ul className="mt-4 mx-2 space-y-4">
                 <Link href='/' className={url === '/' ? 'bg-blue-400' : ''}>
-                    <li className={`flex flex-row ${url === '/' ? 'bg-blue-400 rounded-md' : ''}`}>
+                    <li className={`flex flex-row hover:text-white hover:bg-blue-400 hover:rounded-md m-2 ${url === '/' ? 'bg-blue-500 rounded-md' : ''}`}>
                         <HomeIcon className={`w-10 p-2 ${url === '/' ? 'text-white' : ''}`} />
                         <h1 className={`p-2 ${url === '/' ? 'text-white' : ''}`}>Dashboard</h1>
                     </li>
                 </Link>                
             
-                <Link href='/reports'>
-                    <li className={`flex flex-row ${url === '/reports' ? 'bg-blue-400 rounded-md' : ''}`}>
+                <Link href='/reports'
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <li className={`flex flex-row hover:text-white hover:bg-blue-400 hover:rounded-md m-2 transition ease-in-out delay-150  duration-300 ${url === '/reports' ? 'bg-blue-500 rounded-md' : ''}`}
+                        
+                    >
                         <DocumentChartBarIcon className={`w-10 p-2 ${url === '/reports' ? 'text-white' : ''}`}/>            
-                        <h1 className={`p-2 ${url === '/reports' ? 'text-white' : ''}`}>Reports</h1>                
+                        <h1 className={`p-2 ${url === '/reports' ? 'text-white' : ''}`}>Reports</h1>            
                     </li>
+                    <div className="ml-12">
+                        {isDropDownVisible && <DropdownNavLink navLinks={reportLinks}/> }
+                    </div>
                 </Link>
+                  
                 
                 <Link>
                     <li className="flex flex-row">

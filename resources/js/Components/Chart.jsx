@@ -6,7 +6,7 @@ import interpolateColors from '@/utils/ColorGeneration';
 ChartJS.register(ArcElement, Tooltip );
 
 
-const Chart = ({chartItems , title}) => {
+const Chart = ({chartItems , title, chartType}) => {
   const colorScale = d3.interpolateRainbow;
   const colorRangeInfo = {
     colorStart: 0,
@@ -42,7 +42,11 @@ const Chart = ({chartItems , title}) => {
   return(
     <div className='bg-white rounded-md p-8 m-2 md:w-1/2'>
       <h3 className='text-center p-4'>{title}</h3>
-      <Doughnut data={data} />
+      {
+        chartType === 'Doughnut' ?
+          <Doughnut data={data} /> :
+          'No data to display'
+      }
     </div>
   )
 }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('store_item_dates', function (Blueprint $table) {
             $table->id();
-            $table->string('store_item_id');
+            $table->string('asset_item_id');
             $table->date('delivery_date')->nullable();
             $table->date('issue_date')->nullable();
             $table->date('return_date')->nullable();
