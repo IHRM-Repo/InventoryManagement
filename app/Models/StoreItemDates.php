@@ -10,12 +10,23 @@ class StoreItemDates extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['store_item_id','delivery_date','issue_date','return_date', 'issued_to', 'issue_amount', 'returned_by', 'remarks'];
+    protected $fillable = ['asset_id','delivery_date','issue_date','return_date', 'issued_to', 'issue_amount', 'returned_by', 'remarks'];
     protected $guarded = ['id'];
 
-    public function storeItem():BelongsTo
+    public function fixedAsset():BelongsTo
     {
-        return $this->belongsTo(StoreItem::class);
+        return $this->belongsTo(FixedAsset::class);
     }
+
+    public function liquidAsset():BelongsTo
+    {
+        return $this->belongsTo(LiquidAsset::class);
+    }
+
+    public function unit(): BelongsTo
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
     public $timestamps = false;
 }

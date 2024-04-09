@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('fixed_assets', function (Blueprint $table) {
             $table->id();
-            $table->integer('asset_id');
+            $table->string('item_name');
             $table->string('location');
             $table->string('serial_no');
+            $table->string('description');
             $table->decimal('purchase_amount');
             $table->decimal('depreciation_rate');
             $table->enum('condition', ['new', 'repaired', 'good', 'damaged']);

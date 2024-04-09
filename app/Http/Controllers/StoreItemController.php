@@ -18,16 +18,7 @@ class StoreItemController extends Controller
     {
 
         return Inertia::render('Home', [
-            'storeItems' => StoreItem::select('id','item_name', 'category', 'location')                                        
-                                        ->get(),
-            // 'lowStoreItems' => StoreItem::select('id','item_name', 'category', 'location')
-            //                                 ->orderBy('quantity', 'asc')
-            //                                 ->where('quantity', '<', '30')
-            //                                 ->get(),
-            // 'units' => Unit::select('unit', 'unit_size')->get(),
-
-            'chart' => StoreItem::groupBy('type')->select('type', DB::raw('count(*) as total'))->whereNotNull('type')->get(),
-
+           
         ]);
     }
 

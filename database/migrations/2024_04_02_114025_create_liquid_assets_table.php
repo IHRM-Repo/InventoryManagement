@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('liquid_assets', function (Blueprint $table) {
             $table->id();
-            $table->integer('asset_id');
+            $table->string('item_name');
             $table->integer('category_id');
             $table->integer('unit_id');
             $table->decimal('quantity');
