@@ -17,7 +17,10 @@ class LiquidAssetsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'item_name' => fake()->word(),
+            'unit_id' => Unit::factory(),
+            'quantity' => fake()->randomNumber(3, true),
+            'category_id' => StoreItemCategory::factory(),
         ];
     }
 }

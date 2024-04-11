@@ -6,7 +6,10 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 use App\Models\Unit;
-use App\Models\StoreItem;
+use App\Models\FixedAssets;
+use App\Models\LiquidAssets;
+use App\Models\SubCategory;
+use App\Models\StoreItemCategory;
 use App\Models\StoreItemDates;
 
 class DatabaseSeeder extends Seeder
@@ -23,12 +26,20 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $storeItem = StoreItem::factory()
-                                ->count(10)
-                                ->has(StoreItemDates::factory()->count(2))
-                                ->create();
-        $items = Unit::factory()
-                        ->count(5)
-                        ->create();
+        FixedAssets::factory()
+                    ->count(10)
+                    ->has(StoreItemDates::factory()->count(2))
+                    ->has(StoreItemCategory::factory()->count(2))
+                    ->create();
+        LiquidAssets::factory()
+                    ->count(5)
+                    ->has(StoreItemDates::factory()->count(3))
+                    ->has(StoreItemCategory::factory->count(2))
+                    ->has(Unit::factory->count(3))
+                    ->create();
+        StoreItemCategory::factory()
+                    ->count(3)
+                    ->has(SubCategory::factory()->count(2))
+                    ->create();
     }
 }

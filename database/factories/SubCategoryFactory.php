@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\StoreItemCategory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\SubCategory>
@@ -17,7 +18,8 @@ class SubCategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+           'category_id' => StoreItemCategory::factory(),
+           'sub_category_name' => fake()->randomElement(['laptop', 'phone', 'chair', 'table', 'printer']),
         ];
     }
 }

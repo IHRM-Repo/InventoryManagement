@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('condition', ['new', 'repaired', 'good', 'damaged']);
             $table->boolean('acquired')->default(true);
             $table->string('asset_code');
+            $table->integer('category_id');
             $table->decimal('quantity');           
         });
     }

@@ -17,7 +17,7 @@ class StoreItemCategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'category_name' => fake()->randomElement(['stationery', 'kitchen', 'technology', 'furniture', 'others']),
         ];
     }
 }

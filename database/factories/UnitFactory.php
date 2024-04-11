@@ -21,7 +21,6 @@ class UnitFactory extends Factory
         return [
             'unit' => fake()->randomElement(['kilograms', 'grams', 'rims', 'millilitres', 'litres']),
             'unit_size' => fake()->randomNumber(2, true),
-            'store_item_id' => StoreItem::factory()->create()
         ];
     }
 }
