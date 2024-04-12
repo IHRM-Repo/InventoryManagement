@@ -15,18 +15,15 @@ class StoreItemDates extends Model
 
     public function fixedAsset():BelongsTo
     {
-        return $this->belongsTo(FixedAsset::class);
+        return $this->belongsTo(FixedAsset::class, 'asset_id');
     }
 
     public function liquidAsset():BelongsTo
     {
-        return $this->belongsTo(LiquidAsset::class);
+        return $this->belongsTo(LiquidAsset::class, 'asset_id');
     }
 
-    public function unit(): BelongsTo
-    {
-        return $this->belongsTo(Unit::class);
-    }
+   
 
     public $timestamps = false;
 }

@@ -12,22 +12,22 @@ class StoreItemCategory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['category_name','store_item_id'];
+    protected $fillable = ['category_name'];
     protected $guarded = ['id'];
 
     public function fixedAsset(): HasOne
     {
-        return $this->hasOne(FixedAsset::class);
+        return $this->hasOne(FixedAsset::class, 'category_id');
     }
 
     public function liquidAsset(): HasOne
     {
-        return $this->hasOne(LiquidAsset::class);
+        return $this->hasOne(LiquidAsset::class, 'category_id');
     }
 
     public function subcategory(): HasMany
     {
-        return $this->hasMany(SubCategory::class);
+        return $this->hasMany(SubCategory::class, 'category_id');
     }
 
 

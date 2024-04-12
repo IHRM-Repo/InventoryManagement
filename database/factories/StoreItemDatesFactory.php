@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\FixedAssets;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\StoreItemDates>
  */
@@ -24,6 +24,7 @@ class StoreItemDatesFactory extends Factory
             'issue_amount' => fake()->randomNumber(2, true),
             'returned_by' => fake()->name(), 
             'remarks' => fake()->text(30),
+            'asset_id' => FixedAssets::factory(),
         ];
     }
 }

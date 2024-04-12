@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('issued_to')->nullable();
             $table->integer('issue_amount')->nullable();
             $table->string('returned_by')->nullable();
-            $table->string('unit_id')->nullable();
             $table->text('remarks')->nullable();
         });
     }

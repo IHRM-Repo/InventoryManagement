@@ -19,23 +19,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         FixedAssets::factory()
                     ->count(10)
-                    ->has(StoreItemDates::factory()->count(2))
+                    ->has(StoreItemDates::factory()->count(5))
                     ->has(StoreItemCategory::factory()->count(2))
                     ->create();
         LiquidAssets::factory()
-                    ->count(5)
-                    ->has(StoreItemDates::factory()->count(3))
-                    ->has(StoreItemCategory::factory->count(2))
-                    ->has(Unit::factory->count(3))
+                    ->count(10)
+                    ->has(StoreItemDates::factory()->count(5))
+                    ->has(StoreItemCategory::factory()->count(2))
+                    ->has(Unit::factory()->count(3))
                     ->create();
         StoreItemCategory::factory()
                     ->count(3)

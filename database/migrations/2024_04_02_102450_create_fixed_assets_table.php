@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('location');
             $table->string('serial_no');
             $table->string('description');
-            $table->decimal('purchase_amount');
-            $table->decimal('depreciation_rate');
+            $table->double('purchase_amount');
+            $table->double('depreciation_rate');
             $table->enum('condition', ['new', 'repaired', 'good', 'damaged']);
             $table->boolean('acquired')->default(true);
             $table->string('asset_code');

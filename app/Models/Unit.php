@@ -14,13 +14,10 @@ class Unit extends Model
 
     public function liquidAsset(): HasOne
     {
-        return $this->hasOne(LiquidAsset::class);
+        return $this->hasOne(LiquidAsset::class, 'unit_id');
     }
 
-    public function storeItemDates(): HasOne
-    {
-        return $this->hasOne(StoreItemDates::class);
-    }
+   
     
     public $timestamps = false;
 }

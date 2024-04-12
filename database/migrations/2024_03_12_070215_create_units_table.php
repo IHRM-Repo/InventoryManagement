@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
-            $table->integer('asset_id');
             $table->string('unit');
             $table->decimal('unit_size');
         });

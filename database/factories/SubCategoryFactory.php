@@ -19,7 +19,7 @@ class SubCategoryFactory extends Factory
     {
         return [
            'category_id' => StoreItemCategory::factory(),
-           'sub_category_name' => fake()->randomElement(['laptop', 'phone', 'chair', 'table', 'printer']),
+           'sub_category' => fake()->randomElement(['laptop', 'phone', 'chair', 'table', 'printer']),
         ];
     }
 }
