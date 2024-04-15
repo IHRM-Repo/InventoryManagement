@@ -1,6 +1,7 @@
 import Layout from "@/Components/Layout";
 import LineChart from "@/Components/LineChart";
 import { Head } from '@inertiajs/react';
+import InventoryReport from "./InventoryReport";
 
 const Index = ({issuedStock, returnedStock, purchasedStock}) => {
     // console.log(issuedStock.map(i => i.issue_date.toLocaleString()));
@@ -42,9 +43,7 @@ const Index = ({issuedStock, returnedStock, purchasedStock}) => {
         <div>
             <Head title='Reports'/>
             <Layout children={
-                <div className="bg-white m-2 w-1/2">
-                    <LineChart lineChartOne={issuedStock} lineChartTwo={returnedStock} />
-                </div>
+               <InventoryReport/>
             }/>
         </div>
     )

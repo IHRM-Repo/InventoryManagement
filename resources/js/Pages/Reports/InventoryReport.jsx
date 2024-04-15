@@ -1,19 +1,17 @@
+import Form from "@/Components/Form";
 import Layout from "@/Components/Layout";
+import LineChart from "@/Components/LineChart";
 import { Head } from '@inertiajs/react';
 
 
 const InventoryReport = () => {
     return(
-        <div>
-            <Head title='Reports'/>
-            <Layout>
-                <div className="my-8">
-                    <div className="my-2 border-2 border-black">
-                        <p>Stock levels</p>
-                    </div>
-                </div>
-            </Layout>
-        </div>
+       
+          <div className="m-2 bg-white">
+           <LineChart/>
+
+          </div>
+       
     )
 }
 
