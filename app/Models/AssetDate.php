@@ -6,18 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
-class Unit extends Model
+class AssetDate extends Model
 {
     use HasFactory;
-
-    public $fillable = ['unit_name', 'unit_measure'];
-
+    public $fillable = ['purchase_date', 'asset_id', 'issue_date', 'return_date', 'remarks', 'issue_amount', 'issued_to'];
+    
     public $timestamps = false;
 
-    /**
-     * Get the asset that is associated with the Unit
+    /**    
+     * Get the asset associated with the AssetDate
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
     */
     public function asset(): BelongsTo
     {

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportsController;
-use App\Http\Controllers\StoreItemController;
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\ExcelFileImportController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -20,7 +20,7 @@ use Inertia\Inertia;
 */
 
 Route::group([], function () {
-    Route::get('/', [StoreItemController::class, 'index'])->name('item.home');
+    Route::get('/', [AssetController::class, 'index'])->name('item.home');
     Route::post('/', [StoreItemController::class, 'store'])->name('item.store');
     Route::get('{id}/view', [StoreItemController::class, 'show'])->name('item.show');
     Route::get('{id}/edit', [StoreItemController::class, 'edit'])->name('item.edit');

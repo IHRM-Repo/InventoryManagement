@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
-class Unit extends Model
+class Location extends Model
 {
     use HasFactory;
 
-    public $fillable = ['unit_name', 'unit_measure'];
+    public $fillable = ['location_name', 'description', 'asset_id'];
 
     public $timestamps = false;
 
     /**
-     * Get the asset that is associated with the Unit
+     * Get the asset associated with the Location
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
     */

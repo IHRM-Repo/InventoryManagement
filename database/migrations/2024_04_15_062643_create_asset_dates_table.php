@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('store_item_dates', function (Blueprint $table) {
+        Schema::create('asset_dates', function (Blueprint $table) {
             $table->id();
+            $table->date('purchase_date')->nullable();
             $table->string('asset_id');
-            $table->date('delivery_date')->nullable();
             $table->date('issue_date')->nullable();
             $table->date('return_date')->nullable();
-            $table->string('issued_to')->nullable();
-            $table->integer('issue_amount')->nullable();
-            $table->string('returned_by')->nullable();
             $table->text('remarks')->nullable();
+            $table->decimal('issue_amount')->nullable();
+            $table->string('issued_to')->nullable();
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('store_item_dates');
+        Schema::dropIfExists('asset_dates');
     }
 };

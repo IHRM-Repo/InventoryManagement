@@ -18,10 +18,12 @@ const Navbar = () => {
 
     const reportLinks = [
         {
+            id: 1,
             tag: '/reports/inventory',
             name: 'Inventory Report'
         },
         {
+            id: 2,
             tag: 'reports/stock',
             name: 'Stock Report'
         }

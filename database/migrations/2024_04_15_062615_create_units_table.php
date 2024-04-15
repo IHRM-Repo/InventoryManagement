@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('liquid_assets', function (Blueprint $table) {
+        Schema::create('units', function (Blueprint $table) {
             $table->id();
-            $table->string('item_name');
-            $table->integer('category_id');
-            $table->integer('unit_id');
-            $table->decimal('quantity');
+            $table->string('unit_name');
+            $table->decimal('unit_measure');
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('liquid_assets');
+        Schema::dropIfExists('units');
     }
 };

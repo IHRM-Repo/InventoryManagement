@@ -3,11 +3,13 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Asset;
+
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\StoreItemCategory>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Location>
  */
-class StoreItemCategoryFactory extends Factory
+class LocationFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +19,9 @@ class StoreItemCategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_name' => fake()->randomElement(['stationery', 'kitchen', 'technology', 'furniture', 'others']),
+            'location_name' => fake()->word(),
+            'description' => fake()->sentence(),
+            'asset_id' => Asset::factory(),
         ];
     }
 }

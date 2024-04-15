@@ -6,7 +6,7 @@ import AddItemFormModal from './Modals/AddItemFormModal';
 import { useForm } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 
-const Dashboard = ({ store, chartData, units, message }) => { 
+const Dashboard = ({ store, categories, chartData, message, lowStore }) => { 
     const [ addNewItemBtn, setAddNewItemBtn ] = useState(false)  
     const [ isAlertVisible, setIsAlertVisible] = useState(false)
     const [ searchParam, setSearchParam ] = useState('')
@@ -51,21 +51,14 @@ const Dashboard = ({ store, chartData, units, message }) => {
         setAddNewItemBtn(false)
     }
 
-    //retrieving categories of store items
-    const categories = []
-    store.forEach(item => {
-        categories.push(item.category)       
-    })
-
-    //setting unique category options from the categories array
-    const categoryOptions = [...new Set(categories)]
+   
 
     const search = (items) => {
         if(filterParam !== '' && searchParam !== '') {
             return items.filter(item => item.category === filterParam && item.item_name.toLowerCase().startsWith(searchParam.trim().toLowerCase()))
         }
         else if(filterParam !== '') {
-            return items.filter(item => item.category === filterParam)
+            return items.filter(item => item.category_id === filterParam)
         }else if(searchParam !== '') {
             const result = items.filter(item => item.item_name.toLowerCase().startsWith(searchParam.trim().toLowerCase()))
             if(result.length > 0) {
@@ -84,7 +77,7 @@ const Dashboard = ({ store, chartData, units, message }) => {
         e.preventDefault();
         post(route('excel.upload'))
     }
-      
+    
     return(
         <section className='flex flex-col m-4 p-2'>
             <div className={`bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3 ${isAlertVisible ? 'block' : 'hidden'}`} role="alert">
@@ -96,12 +89,12 @@ const Dashboard = ({ store, chartData, units, message }) => {
                 <div className='bg-white rounded-md m-2'>
                     <h2 className='text-center'>Items Below 10</h2>
                     <hr className='mx-4 border-2 border-black  mb-4'></hr>
-                   {/* <div className='grid overflow-x-auto'>
+                   <div className='grid overflow-x-auto'>
                        {lowStore.length > 0 ?
-                        <Table dataItems={lowStore} actionItems={lowStoreItemsBtns} itemsPerPage={2}/> :
+                        <Table dataItems={lowStore} actionItems={lowStoreItemsBtns} itemsPerPage={3}/> :
                         <p>No data to display</p>
                         }
-                   </div>                                                       */}
+                   </div>                                                      
                 </div>                
             </div>
             <div className='flex flex-col m-2 p-2 bg-white rounded-md'>
@@ -114,8 +107,8 @@ const Dashboard = ({ store, chartData, units, message }) => {
                             onChange={e => setFilterParam(e.target.value)}
                             >
                             <option value={''}>filter by category</option>
-                            {categoryOptions.map((category, index) =>
-                                <option key={index} value={category}>{category}</option>
+                            {categories.map((category, index) =>
+                                <option key={index} value={category.id}>{category.category_name}</option>
                             )}
                         </select>
                         <input 
@@ -155,7 +148,7 @@ const Dashboard = ({ store, chartData, units, message }) => {
                 } 
             </div>
            
-            <AddItemFormModal isOpen={addNewItemBtn} onClose={handleAddItemModalClose} categoryOptions={categoryOptions} units={units}/>
+            <AddItemFormModal isOpen={addNewItemBtn} onClose={handleAddItemModalClose} categoryOptions={categories} />
         </div>
                       
         </section>
