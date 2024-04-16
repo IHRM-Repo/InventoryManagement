@@ -17,10 +17,10 @@ class AssetDateFactory extends Factory
     public function definition(): array
     {
         return [
-            'purchase_date' => fake()->dateTimeBetween('-2 week', '+2 week'),
+            'purchase_date' => fake()->dateTimeThisDecade(),
             'asset_id' => Asset::factory(),
-            'issue_date' => fake()->dateTimeBetween('-2 week', '+2 week'),
-            'return_date' => fake()->dateTimeBetween('-1 week', '+1 week'),
+            'issue_date' => fake()->dateTimeThisDecade(),
+            'return_date' => fake()->dateTimeThisDecade(),
             'remarks' => fake()->sentence(),
             'issue_amount' => fake()->randomDigitNotNull(),
             'issued_to' => fake()->name(),            

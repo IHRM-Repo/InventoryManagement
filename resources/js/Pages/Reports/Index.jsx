@@ -21,29 +21,27 @@ const Index = ({issuedStock, returnedStock, purchasedStock}) => {
         end.setDate(numDay + (7 - dayOfWeek));
         end.setHours(0, 0, 0, 0);
       
-        return [start, end];
+        return [start.getTime(), end.getTime()];
       }
-      let [start, end] = getWeekDates();
-    //   console.log(start.toDateString())
-
+    
 
     function filterDatesByCurrentWeek(dates){
         let [start, end] = getWeekDates();
-        return dates.filter(d => d >= start && d < end);
+        return dates.filter(d => +d >= +start && +d < +end);
      }
      const datesArray = []
-     issuedStock.map(i => datesArray.push(new Date(i.issue_date).setHours(0, 0, 0).toString()))
+     issuedStock.map(i => datesArray.push(new Date(i.issue_date).setHours(0, 0, 0)))
     //  console.log(datesArray)
      
      const data = filterDatesByCurrentWeek(datesArray);
 
-     console.log(data.map(data => data.toLocaleString()));
+   console.log(data.map(d => new Date(d).toLocaleDateString()));
       
     return (
         <div>
             <Head title='Reports'/>
             <Layout children={
-               <InventoryReport/>
+               <InventoryReport issueDates={issuedStock}/>
             }/>
         </div>
     )

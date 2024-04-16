@@ -43,8 +43,7 @@ const Navbar = () => {
                 </Link>                
             
                 <Link href='/reports'
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
+                   
                 >
                     <li className={`flex flex-row hover:text-white hover:bg-blue-400 hover:rounded-md m-2 transition ease-in-out delay-150  duration-300 ${url === '/reports' ? 'bg-blue-500 rounded-md' : ''}`}
                         
@@ -52,9 +51,7 @@ const Navbar = () => {
                         <DocumentChartBarIcon className={`w-10 p-2 ${url === '/reports' ? 'text-white' : ''}`}/>            
                         <h1 className={`p-2 ${url === '/reports' ? 'text-white' : ''}`}>Reports</h1>            
                     </li>
-                    <div className="ml-12">
-                        {isDropDownVisible && <DropdownNavLink navLinks={reportLinks}/> }
-                    </div>
+                    
                 </Link>
                   
                 

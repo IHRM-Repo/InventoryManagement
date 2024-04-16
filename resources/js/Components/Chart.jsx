@@ -1,12 +1,13 @@
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, LinearScale, PointElement, LineElement, CategoryScale } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip } from 'chart.js';
 import interpolateColors from '@/utils/ColorGeneration';
 import { Doughnut } from 'react-chartjs-2';
 import * as d3 from 'd3';
 
-ChartJS.register(ArcElement, Tooltip, CategoryScale, LinearScale , LineElement, PointElement);
+ChartJS.register(ArcElement, Tooltip);
 
 
-const Chart = ({chartItems , title, chartType}) => {
+const Chart = ({chartItems , title}) => {
+  // console.log('chart data',chartItems);
 
   const colorScale = d3.interpolateRainbow;
   const colorRangeInfo = {
@@ -43,12 +44,8 @@ const Chart = ({chartItems , title, chartType}) => {
   
   return(
     <div className='bg-white rounded-md p-8 m-2 md:w-1/2'>
-      <h3 className='text-center p-4'>{title}</h3>
-      {
-        chartType === 'Doughnut' ?
-          <Doughnut data={data} options={options} /> :
-          'No data to display'
-      }
+      <h3 className='text-center p-4'>{title}</h3>      
+      <Doughnut data={data} options={options} /> 
     </div>
   )
 }
