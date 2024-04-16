@@ -1,68 +1,59 @@
-import Form from "@/Components/Form";
-import Layout from "@/Components/Layout";
-import LineChart from "@/Components/LineChart";
-import { Head } from '@inertiajs/react';
-import { useEffect, useState } from "react";
-import { format } from 'date-fns';
-import groupBy from 'lodash/groupBy';
-import sumBy from 'lodash/sumBy';
+import { useState } from "react";
+import Table from "@/Components/Table";
 
+const InventoryReport = ({issueDates, returnDates, purchaseDates}) => {
+  
 
-const InventoryReport = ({issueDates}) => {
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
+  const [startDate, setStartDate] = useState(new Date().toISOString().split('T')[0])
+  const [endDate, setEndDate] = useState(new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])
 
-    const newIssueDates = issueDates.map(d => ({...d, issue_amount: parseInt(d.issue_amount, 10)}))
-    // console.log(newIssueDates)
-    const orderedByMonths = groupBy(newIssueDates, function(element) {
-        return element.issue_date.substring(0,7);
-    });
-    const orderedByYears =  groupBy(orderedByMonths, function(month) {
-        return month[0].issue_date.substring(0,4);
-    });
-    const months = Object.entries(orderedByMonths).map((entry) => {
-        const [key, values] = entry;
-      
-        return {
-          name: key,
-          total: sumBy(values, 'issue_amount'),
-        };
-      });
-      const years = Object.entries(orderedByYears).map((entry) => {
-        const [key, values] = entry  
-        const newArray = []
-        for(let i = 0; i<=Object.values(orderedByYears).length; i ++) {
-          for(let j = 0; j<=values.length; j ++){
-            return values[i][j]
-          }
-        } 
-
-       
-        
-      
-        // return {
-        //   name: key,
-        //   total: sumBy(values, 'issue_amount'),
-        // };
-      });
-
-      console.log(years);
-      
-
-    
-    
-
-    return(
-       
-          <div className="m-2 bg-white">
-            <label for="start">Start date:</label>
-            <input type="date" id="start" value={startDate} onChange={e =>setStartDate(e.target.value)}/>
-            <label for="end">End date:</label>
-            <input type="date" id="end" value={endDate} onChange={e => setEndDate(e.target.value)}/>
-            <LineChart/>
+  const filteredIssueDates = issueDates.filter(d => d.issue_date >= startDate && d.issue_date <= endDate);
+  
+  return (
+  <>
+      <div className="grid grid-rows-2 grid-flow-col gap-4 m-2 p-4 ">
+        <div className='grid overflow-x-auto bg-white m-2 rounded-md'>
+          <h1 className="text-center m-2 text-lg">Issued Items Table</h1>
+          <div className='flex flex-col md:flex-row m-2 p-4 gap-4'>
+            <div className="flex flex-col gap-2">
+            <label htmlFor='filterStartDate'>Start Date</label>
+            <input type='date' id='filterStartDate' value={startDate} onChange={e=> setStartDate(e.target.value)}/>
+            </div>
+            <div className="flex flex-col gap-2">
+            <label htmlFor="filterEndDate">End Date</label>
+            <input type='date' id='filterEndDate' value={endDate} onChange={e=> setEndDate(e.target.value)}/>
+            </div>           
           </div>
+         
+        
+          {filteredIssueDates.length > 0 ?
+            <Table dataItems={filteredIssueDates} itemsPerPage={5}/> :
+            <p className="text-center">No data to display</p>
+          }
+        </div>
+        <div className='grid overflow-x-auto m-2 bg-white rounded-md'>
+          <h1 className="text-center m-2 text-lg">Returned Items Table</h1>
+        
+          {returnDates.length > 0 ?
+            <Table dataItems={returnDates} itemsPerPage={5}/> :
+            <p>No data to display</p>
+          }
+        </div>
+        <div className='grid overflow-x-auto m-2 bg-white rounded-md'>
+          <h1 className="text-center m-2 text-lg">Purchased Items Table</h1>
+        
+          {purchaseDates.length > 0 ?
+            <Table dataItems={purchaseDates} itemsPerPage={5}/> :
+            <p>No data to display</p>
+          }
+        </div>
+      </div>
+  </>
+    
+  )
+   
        
-    )
+  
 }
 
 export default InventoryReport;

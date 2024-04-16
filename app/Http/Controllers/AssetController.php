@@ -23,8 +23,11 @@ class AssetController extends Controller
             'assetQuantiesByCategory' => DB::table('assets')
                                             ->join('categories', 'assets.category_id', '=', 'categories.id' )
                                             ->select('assets.quantity', 'categories.category_name')
+                                            ->orderBy('quantity', 'DESC')
                                             ->get(),
-            'lowAssets' => Asset::select('id','item_name', 'quantity')-> where('quantity', '<=', '4')->get(),
+            'lowAssets' => Asset::select('id','item_name', 'quantity')-> where('quantity', '<=', '4')
+                                            ->orderBy('quantity', 'ASC')
+                                            ->get(),
            
         ]);
     }

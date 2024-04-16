@@ -55,7 +55,7 @@ const Table = ({dataItems, itemsPerPage, actionItems=null}) => {
                     <table className="table-auto overflow-x-auto">
                         <thead className='border-b mb-8 border-gray-200'>
                             <tr>
-                            {formatHeaders.map((header, index) => 
+                            {formatHeaders.slice(1).map((header, index) => 
                                 <th key={index} className='text-left md:px-4'>{header}</th>
                             )}
                             {actionItems ? <th className='text-left px-6'>Actions</th> : '' }
@@ -64,7 +64,7 @@ const Table = ({dataItems, itemsPerPage, actionItems=null}) => {
                         <tbody>
                             {currentItems.map((data, index) => (
                                 <tr key={index} className='odd:bg-white even:bg-slate-200'>
-                                    {Object.values(data).map((item, index) => (
+                                    {Object.values(data).slice(1).map((item, index) => (
                                         <td className='md:px-6' key={index}>{item}</td>
                                     ))}
 
