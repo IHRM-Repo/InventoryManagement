@@ -29,6 +29,7 @@ Route::group([], function () {
 });
 Route::get('/reports', [ReportsController::class, 'index'])->name('report');
 Route::get('/dead-stock', [ReportsController::class, 'depreciatedStock'])->name('dead-stock');
+Route::get('/export/dead-stock', [ReportsController::class, 'exportDeadStock'])->name('exportDeadStock');
 
 Route::post('/import-excel', [ExcelFileImportController::class, 'upload'])->name('excel.upload');
 // Route::resource('/dashboard', StoreItemController::class);

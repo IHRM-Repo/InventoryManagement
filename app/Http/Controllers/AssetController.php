@@ -17,17 +17,27 @@ class AssetController extends Controller
     public function index()
     {
         return Inertia::render('Home', [
-            'assets' => Asset::select('id','item_name', 'serial_no', 'purchase_price', 'depreciation_rate', 'quantity', 'category_id')->get(),
-            'categories' => Category::select('id','category_name')->get(),
+            'assets'                    => Asset::select(
+                                                            'id',   
+                                                            'item_name',
+                                                            'serial_no',
+                                                            'purchase_price', 
+                                                            'depreciation_rate', 
+                                                            'quantity', 'category_id'
+                                                        )->get(),
+
+            'categories'                => Category::select('id','category_name')->get(),
             
-            'assetQuantiesByCategory' => DB::table('assets')
-                                            ->join('categories', 'assets.category_id', '=', 'categories.id' )
-                                            ->select('assets.quantity', 'categories.category_name')
-                                            ->orderBy('quantity', 'DESC')
-                                            ->get(),
-            'lowAssets' => Asset::select('id','item_name', 'quantity')-> where('quantity', '<=', '4')
-                                            ->orderBy('quantity', 'ASC')
-                                            ->get(),
+            'assetQuantiesByCategory'   => DB::table('assets')
+                                                ->join('categories', 'assets.category_id', '=', 'categories.id')
+                                                ->select('assets.quantity', 'categories.category_name')
+                                                ->orderBy('quantity', 'DESC')
+                                                ->get(),
+
+            'lowAssets'                 => Asset::select('id','item_name', 'quantity')
+                                                    -> where('quantity', '<=', '4')
+                                                    ->orderBy('quantity', 'ASC')
+                                                    ->get(),
            
         ]);
     }

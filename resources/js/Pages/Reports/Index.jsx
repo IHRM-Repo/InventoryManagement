@@ -2,8 +2,7 @@ import Layout from "@/Components/Layout";
 import { Head } from '@inertiajs/react';
 import InventoryReport from "./InventoryReport";
 
-const Index = ({issuedStock, returnedStock, purchasedStock, damagedStock, deadStock}) => { 
-   
+const Index = ({issuedStock, returnedStock, purchasedStock, damagedStock}) => {   
     return (
         <div>
             <Head title='Reports'/>
@@ -13,7 +12,6 @@ const Index = ({issuedStock, returnedStock, purchasedStock, damagedStock, deadSt
                     returnDates={returnedStock}
                     purchaseDates={purchasedStock}
                     damagedItems={damagedStock}
-                    deadStock = {deadStock}
                 />
             }/>
         </div>

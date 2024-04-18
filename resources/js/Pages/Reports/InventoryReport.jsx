@@ -1,9 +1,9 @@
 import StockMovement from "@/Components/Reports/StockMovement";
 import Table from "@/Components/Table";
 
-const InventoryReport = ({issueDates, returnDates, purchaseDates, damagedItems, deadStock}) => {  
+const InventoryReport = ({issueDates, returnDates, purchaseDates, damagedItems }) => {  
   return (
-  <>
+    <>
       <div className="grid grid-rows-2 grid-flow-col gap-4 m-2 p-4 ">
         <StockMovement data={issueDates} header='Issued Items Table' dateType='issue_date'/>
         <StockMovement data={returnDates} header='Returned Items Table' dateType='return_date'/>
@@ -19,8 +19,7 @@ const InventoryReport = ({issueDates, returnDates, purchaseDates, damagedItems, 
           }
         </div>
       </div>
-  </>
-    
+    </>    
   )
    
        
