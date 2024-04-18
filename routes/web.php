@@ -28,6 +28,7 @@ Route::group([], function () {
     Route::delete('/delete/{id}', [StoreItemController::class, 'destroy'])->name('item.destroy');
 });
 Route::get('/reports', [ReportsController::class, 'index'])->name('report');
+Route::get('/dead-stock', [ReportsController::class, 'depreciatedStock'])->name('dead-stock');
 
 Route::post('/import-excel', [ExcelFileImportController::class, 'upload'])->name('excel.upload');
 // Route::resource('/dashboard', StoreItemController::class);

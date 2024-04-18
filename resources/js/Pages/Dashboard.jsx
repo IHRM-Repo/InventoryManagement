@@ -88,7 +88,7 @@ const Dashboard = ({ store, categories, chartData, message, lowStore }) => {
             <div className="flex flex-col lg:flex-row gap-2">
                 <Chart chartItems={chartData} title='Store Items by Category'/>
                 <div className='bg-white rounded-md m-2'>
-                    <h2 className='text-center'>Items Below 10</h2>
+                    <h2 className='text-center my-4'>Items Below 10</h2>
                     <hr className='mx-4 border-2 border-black  mb-4'></hr>
                    <div className='grid overflow-x-auto'>
                        {lowStore.length > 0 ?

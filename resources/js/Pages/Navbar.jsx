@@ -1,5 +1,5 @@
 import DropdownNavLink from "@/Components/DropdownNavLink";
-import { HomeIcon, DocumentChartBarIcon, Cog6ToothIcon } from "@heroicons/react/20/solid";
+import { HomeIcon, DocumentChartBarIcon, Cog6ToothIcon, DocumentTextIcon } from "@heroicons/react/20/solid";
 import {  Link } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
 import { useState } from "react";
@@ -42,16 +42,34 @@ const Navbar = () => {
                     </li>
                 </Link>                
             
-                <Link href='/reports'
-                   
-                >
-                    <li className={`flex flex-row hover:text-white hover:bg-blue-400 hover:rounded-md m-2 transition ease-in-out delay-150  duration-300 ${url === '/reports' ? 'bg-blue-500 rounded-md' : ''}`}
-                        
+                <Link href='/reports'>
+                    <li className={`flex flex-row hover:text-white hover:bg-blue-400
+                     hover:rounded-md m-2 transition ease-in-out delay-150  duration-300
+                      ${url === '/reports' ? 'bg-blue-500 rounded-md' : ''}`}                        
                     >
-                        <DocumentChartBarIcon className={`w-10 p-2 ${url === '/reports' ? 'text-white' : ''}`}/>            
-                        <h1 className={`p-2 ${url === '/reports' ? 'text-white' : ''}`}>Reports</h1>            
-                    </li>
-                    
+                        <DocumentChartBarIcon className={`w-10 p-2 ${url === '/reports'
+                         ? 'text-white' :
+                          ''}`}
+                        />            
+                        <h1 className={`p-2 ${url === '/reports' ? 'text-white' : ''}`}>
+                            Reports
+                        </h1>            
+                    </li>                    
+                </Link>
+
+                <Link href='/dead-stock'>
+                    <li className={`flex flex-row hover:text-white hover:bg-blue-400
+                     hover:rounded-md m-2 transition ease-in-out delay-150  duration-300
+                      ${url === '/dead-stock' ? 'bg-blue-500 rounded-md' : ''}`}                        
+                    >
+                        <DocumentTextIcon className={`w-10 p-2 ${url === '/dead-stock'
+                         ? 'text-white' :
+                          ''}`}
+                        />            
+                        <h1 className={`p-2 ${url === '/dead-stock' ? 'text-white' : ''}`}>
+                            Dead Stock Report
+                        </h1>            
+                    </li>                    
                 </Link>
                   
                 
