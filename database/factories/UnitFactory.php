@@ -17,8 +17,8 @@ class UnitFactory extends Factory
     public function definition(): array
     {
         return [
-            'unit_name' => fake()->word(),
-            'unit_measure' => fake()->randomDigitNotNull(),      
+            'unit_name'     =>  fake()->word(),
+            'unit_measure'  =>  fake()->randomDigitNotNull(),      
         ];
     }
 }

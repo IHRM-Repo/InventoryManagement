@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class AssetDate extends Model
 {
     use HasFactory;
-    public $fillable = ['purchase_date', 'asset_id', 'issue_date', 'return_date', 'remarks', 'issue_amount', 'issued_to'];
+    public $fillable = ['delivery_date', 'asset_id', 'issue_date', 'return_date', 'remarks', 'issue_amount', 'issued_to'];
     
     public $timestamps = false;
 

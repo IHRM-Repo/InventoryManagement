@@ -18,7 +18,7 @@ class DepreciatedStockExport implements FromCollection,  WithHeadings
             'Item Name',
             'Purchase Price',
             'Depreciation Rate',
-            'Purchase Date',
+            'Delivery Date',
             'Depreciation Value'
         ];
     }
@@ -35,15 +35,15 @@ class DepreciatedStockExport implements FromCollection,  WithHeadings
                                         'assets.item_name',
                                         'assets.purchase_price',
                                         'assets.depreciation_rate',
-                                        'asset_dates.purchase_date',
+                                        'asset_dates.delivery_date',
                                         // 'locations.location_name'
                                     )
                             ->whereNotNull('assets.serial_no')
-                            ->orderBy('asset_dates.purchase_date', 'ASC')
+                            ->orderBy('asset_dates.delivery_date', 'ASC')
                             ->get();
 
         $deadStock  =   $assets->map(function($item) {
-            $assetDate          =  DateTime::createFromFormat("Y-m-d", $item->purchase_date);
+            $assetDate          =  DateTime::createFromFormat("Y-m-d", $item->delivery_date);
 
             // calculated depreciation value that is the depreciation rate to the power of the number of 
             // years between current year and the purchase date multiplied by the purchase price
@@ -59,7 +59,7 @@ class DepreciatedStockExport implements FromCollection,  WithHeadings
                 'item_name'          => $item->item_name,
                 'purchase_price'     => round($item->purchase_price, 2),
                 'depreciation_rate'  => round($item->depreciation_rate, 2),
-                'purchase_date'      => $item->purchase_date,
+                'delivery_date'      => $item->delivery_date,
                 'depreciated_value'  => round($depreciatedValue, 2),
                 // 'location'           => $item->location_name
             ];

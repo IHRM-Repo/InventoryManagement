@@ -19,9 +19,9 @@ class LocationFactory extends Factory
     public function definition(): array
     {
         return [
-            'location_name' => fake()->word(),
-            'description' => fake()->sentence(),
-            'asset_id' => Asset::factory(),
+            'location_name' =>  fake()->word(),
+            'description'   =>  fake()->sentence(),
+            'asset_id'      =>  Asset::factory(),
         ];
     }
 }

@@ -17,8 +17,8 @@ class SubCategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'sub_category_name' => fake()->word(),
-            'category_id' => Category::factory(),
+            'sub_category_name' =>  fake()->word(),
+            'category_id'       =>  Category::factory(),
         ];
     }
 }

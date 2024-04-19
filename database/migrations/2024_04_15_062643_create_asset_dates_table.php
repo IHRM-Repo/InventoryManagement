@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('asset_dates', function (Blueprint $table) {
             $table->id();
-            $table->date('purchase_date')->nullable();
+            $table->date('delivery_date')->nullable();
             $table->string('asset_id');
             $table->date('issue_date')->nullable();
             $table->date('return_date')->nullable();
             $table->text('remarks')->nullable();
             $table->decimal('issue_amount')->nullable();
+            $table->string('returned_by')->nullable();
             $table->string('issued_to')->nullable();
         });
     }

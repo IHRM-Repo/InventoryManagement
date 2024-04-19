@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Imports\StoreItemsImport;
+use App\Imports\AssetImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 use Illuminate\Support\Facades\Validator;
@@ -16,10 +16,9 @@ class ExcelFileImportController extends Controller
            
         $request->validate(['file' => 'required|mimes:xlsx, xls']);    
     
-        // $file = $request->files('file');
         $file = $request->file('file');
         
-        Excel::import(new StoreItemsImport, $file);
+        Excel::import(new AssetImport, $file);
 
         return redirect('/')->with('message', 'Successfully imported excel file');
     }

@@ -21,11 +21,11 @@ use Inertia\Inertia;
 
 Route::group([], function () {
     Route::get('/', [AssetController::class, 'index'])->name('item.home');
-    Route::post('/', [StoreItemController::class, 'store'])->name('item.store');
-    Route::get('{id}/view', [StoreItemController::class, 'show'])->name('item.show');
-    Route::get('{id}/edit', [StoreItemController::class, 'edit'])->name('item.edit');
-    Route::patch('{id}', [StoreItemController::class, 'update'])->name('item.update');
-    Route::delete('/delete/{id}', [StoreItemController::class, 'destroy'])->name('item.destroy');
+    Route::post('/', [AssetController::class, 'store'])->name('item.store');
+    Route::get('{id}/view', [AssetController::class, 'show'])->name('item.show');
+    Route::get('{id}/edit', [AssetController::class, 'edit'])->name('item.edit');
+    Route::patch('{id}', [AssetController::class, 'update'])->name('item.update');
+    Route::delete('/delete/{id}', [AssetController::class, 'destroy'])->name('item.destroy');
 });
 Route::get('/reports', [ReportsController::class, 'index'])->name('report');
 Route::get('/dead-stock', [ReportsController::class, 'depreciatedStock'])->name('dead-stock');

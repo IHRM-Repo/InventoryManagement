@@ -17,13 +17,14 @@ class AssetDateFactory extends Factory
     public function definition(): array
     {
         return [
-            'purchase_date' => fake()->dateTimeThisDecade(),
-            'asset_id' => Asset::factory(),
-            'issue_date' => fake()->dateTimeThisDecade(),
-            'return_date' => fake()->dateTimeThisDecade(),
-            'remarks' => fake()->sentence(),
-            'issue_amount' => fake()->randomDigitNotNull(),
-            'issued_to' => fake()->name(),            
+            'delivery_date' =>  fake()->dateTimeThisDecade(),
+            'asset_id'      =>  Asset::factory(),
+            'issue_date'    =>  fake()->dateTimeThisDecade(),
+            'return_date'   =>  fake()->dateTimeThisDecade(),
+            'remarks'       =>  fake()->sentence(),
+            'issue_amount'  =>  fake()->randomDigitNotNull(),
+            'returned_by'   =>  fake()->name(),
+            'issued_to'     =>  fake()->name(),            
         ];
     }
 }
