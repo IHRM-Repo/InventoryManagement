@@ -8,58 +8,60 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 
 const EditForm = ({item, units, selectedUnit}) => {
-    const unit = selectedUnit.map(data => data.unit)
+    console.log(item);
+    // const unit = selectedUnit.map(data => data.unit)
 
    
-    const[quantity, setQuantity] = useState('');
-    const[isSelectedVisible, setIsSelectedVisible] = useState({selected: 'default'});
-    const[unitMeasurement, setUnitMeasurement] = useState(unit[0])
+    // const[quantity, setQuantity] = useState('');
+    // const[isSelectedVisible, setIsSelectedVisible] = useState({selected: 'default'});
+    // const[unitMeasurement, setUnitMeasurement] = useState(unit[0])
 
     
-    const setSelected = (e) => {
-        setIsSelectedVisible({selected: e.target.value})
-    }   
+    // const setSelected = (e) => {
+    //     setIsSelectedVisible({selected: e.target.value})
+    // }   
       
-    const newQty = (isSelectedVisible.selected === 'purchasing' 
-                    || isSelectedVisible.selected === 'returning') ? 
-                        item.quantity + Number(quantity):
-                            (isSelectedVisible.selected === 'issuing') ?
-                                item.quantity - Number(quantity) :
-                                item.quantity
+    // const newQty = (isSelectedVisible.selected === 'purchasing' 
+    //                 || isSelectedVisible.selected === 'returning') ? 
+    //                     item.quantity + Number(quantity):
+    //                         (isSelectedVisible.selected === 'issuing') ?
+    //                             item.quantity - Number(quantity) :
+    //                             item.quantity
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
-        serialNo: item.serial_no,
-        itemName: item.item_name,
-        action: '',
-        unit: '',
-        depreciationRate: item.depreciation_rate,
-        remarks: '',
-        deliveryDate: '',
-        returnDate: '',
-        issueDate: '',
-        quantity: newQty        
-    });   
+    // const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
+    //     serialNo: item.serial_no,
+    //     itemName: item.item_name,
+    //     action: '',
+    //     unit: '',
+    //     depreciationRate: item.depreciation_rate,
+    //     remarks: '',
+    //     deliveryDate: '',
+    //     returnDate: '',
+    //     issueDate: '',
+    //     quantity: newQty        
+    // });   
    
    
-    const submit = (e) => {
-        e.preventDefault();
-        patch(route('item.update', item.id));       
-    };
+    // const submit = (e) => {
+    //     e.preventDefault();
+    //     patch(route('item.update', item.id));       
+    // };
 
     return(
         <section className='flex flex-col h-screen bg-white rounded-md w-auto  sm:w-2/3 my-4 mx-2 p-2'>
-            <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+            {/* <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                 <h3 className="mt-4 text-base text-center border-b mb-8 border-gray-200 font-semibold leading-6 text-gray-900">
                     Edit Item
                 </h3>
-                <form onSubmit={submit} className="mt-6 space-y-6 m-4">
+                {item.map((asset, index) =>
+                    <form onSubmit={submit} className="mt-6 space-y-6 m-4" key={index}>
                     <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                         <div>
                             <InputLabel htmlFor="serialNo" value="Serial No" />
                             <TextInput
                                 id="serialNo"
                                 className="mt-1 block w-full"
-                                value={data.serialNo}
+                                value={asset.serial_no}
                                 onChange={(e) => setData('serialNo', e.target.value)}
                                 isFocused                        
                             />
@@ -71,7 +73,7 @@ const EditForm = ({item, units, selectedUnit}) => {
                             <TextInput
                                 id="itemName"
                                 className="mt-1 block w-full"
-                                value={data.itemName}
+                                value={asset.item_name}
                                 onChange={(e) => setData('itemName', e.target.value)}
                                 required
                                 isFocused                        
@@ -85,22 +87,22 @@ const EditForm = ({item, units, selectedUnit}) => {
                             <TextInput
                                 id="depreciationRate"
                                 className="mt-1 block w-full"
-                                value={data.depreciationRate}
+                                value={asset.depreciation_rate}
                                 onChange={(e) => setData('depreciationRate', e.target.value)}
                                 isFocused                                                            
                             />
                             <InputError className="mt-2" message={errors.depreciationRate} />
                         </div>   
-                        <div className='w-auto'>
-                            <InputLabel  htmlFor="action" value="Action" />
-                            <select className='w-[150px] block mt-2 sm:w-auto rounded-md border-gray-200' value={isSelectedVisible.selected} onChange={setSelected}>
-                                <option value='default'>Select an Action</option>
-                                <option value='purchasing'>Purchase</option>
-                                <option value='issuing'>Issue</option>
-                                {item.returnable ? <option value='returning'>Return</option> : '' }
-                            </select> 
-                            <InputError className="mt-2" message={errors.category} />                    
-                        </div> 
+                        // <div className='w-auto'>
+                        //     <InputLabel  htmlFor="action" value="Action" />
+                        //     <select className='w-[150px] block mt-2 sm:w-auto rounded-md border-gray-200' value={isSelectedVisible.selected} onChange={setSelected}>
+                        //         <option value='default'>Select an Action</option>
+                        //         <option value='purchasing'>Purchase</option>
+                        //         <option value='issuing'>Issue</option>
+                        //         {asset.returnable ? <option value='returning'>Return</option> : '' }
+                        //     </select> 
+                        //     <InputError className="mt-2" message={errors.category} />                    
+                        // </div> 
                         </div>
                         <div className='grid grid-cols-2 gap-4 mt-4 sm:grid-cols-3'>
                         {isSelectedVisible.selected === 'returning' ? 
@@ -152,7 +154,7 @@ const EditForm = ({item, units, selectedUnit}) => {
                             <TextInput
                                 id="quantity"
                                 className="mt-1 block w-full"
-                                value={quantity}
+                                value={asset.quantity}
                                 onChange={(e) => setQuantity(e.target.value)}
                                 required
                                 isFocused                        
@@ -164,7 +166,7 @@ const EditForm = ({item, units, selectedUnit}) => {
 
                     <div>
                         <InputLabel className='block' htmlFor="remarks" value="Remarks" />
-                        <textarea id="remarks" name='remarks' className='w-full' value={data.remarks} onChange={(e) =>setData ('remarks', e.target.value)}/>
+                        <textarea id="remarks" name='remarks' className='w-full' value={asset.remarks} onChange={(e) =>setData ('remarks', e.target.value)}/>
                         <InputError className="mt-2" message={errors.remarks} />
                     </div>   
                     <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:justify-between sm:px-6">
@@ -187,8 +189,11 @@ const EditForm = ({item, units, selectedUnit}) => {
                             <p className="text-sm text-gray-600">Updated.</p>
                         </Transition>
                     </div>
-                </form>
-            </div>
+                </form> 
+                )}
+
+       
+            </div> */}
         </section>
     )
 }

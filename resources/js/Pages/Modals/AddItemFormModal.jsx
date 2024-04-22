@@ -6,18 +6,14 @@ import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 
-const AddItemFormModal = ({ isOpen, onClose, categoryOptions }) => {
-   
-    // if (!isOpen) return null;
-    const cancelButtonRef = useRef(null)
-   
-   
-
+const AddItemFormModal = ({ isOpen, onClose, categoryOptions, subCategoryOptions }) => {
+    const cancelButtonRef = useRef(null) 
 
     const { data, setData, post, errors, processing, recentlySuccessful } = useForm({
         serialNo: '',
         itemName: '',
         category: '',
+        subCategory: '',
         quantity: '',
         depreciationRate: '',
         remarks: '',
@@ -30,6 +26,9 @@ const AddItemFormModal = ({ isOpen, onClose, categoryOptions }) => {
         condition: '',        
     });
 
+    const subCategoryOption = subCategoryOptions.filter(subCategory => subCategory.category_id == data.category);
+
+    
     const submit = (e) => {
         e.preventDefault();
         post(route('item.store'));
@@ -123,10 +122,19 @@ const AddItemFormModal = ({ isOpen, onClose, categoryOptions }) => {
                                                             <select className='w-[150px] sm:w-auto rounded-md border-gray-200' value={data.category} onChange={(e) => setData('category', e.target.value)}>
                                                                 <option value=''>Select a Category</option>
                                                                 {categoryOptions.map((category, index) =>                                 
-                                                                    <option key={index} value={category}>{category}</option>
+                                                                    <option key={index} value={category.id}>{category.category_name}</option>
                                                                 )}
                                                             </select> 
                                                             <InputError className="mt-2" message={errors.category} />                    
+                                                        </div>   
+                                                        <div className='w-auto mt-14 sm:mt-6'>
+                                                            <select className='w-[150px] sm:w-auto rounded-md border-gray-200' value={data.subCategory} onChange={(e) => setData('subCategory', e.target.value)}>
+                                                                <option value=''>Select a Sub Category</option>
+                                                                {subCategoryOption.map((subCategory, index) =>                                 
+                                                                    <option key={index} value={subCategory.id}>{subCategory.sub_category_name}</option>
+                                                                )}
+                                                            </select> 
+                                                            <InputError className="mt-2" message={errors.subCategory} />                    
                                                         </div>   
                                                         
                                                         

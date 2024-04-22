@@ -4,12 +4,12 @@ import Layout from '@/Components/Layout';
 import { usePage } from '@inertiajs/react';
 
 
-const Home = ({ assets, categories, assetQuantiesByCategory, lowAssets }) => {
+const Home = ({ assets, categories, assetQuantiesByCategory, lowAssets, subCategories }) => {
     const message = usePage().props.flash.message;     
     return (
        <>
            <Head title='Home'/>
-           <Layout children={<Dashboard store={assets} chartData={assetQuantiesByCategory} categories={categories} message={message} lowStore={lowAssets}/> }/>
+           <Layout children={<Dashboard store={assets} chartData={assetQuantiesByCategory} categories={categories} subCategoryOptions={subCategories} message={message} lowStore={lowAssets}/> }/>
        </>
     )
 }

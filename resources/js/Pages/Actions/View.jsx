@@ -3,8 +3,9 @@ import Layout from "@/Components/Layout";
 
 
 const View = ({ item, dates }) => {
+  console.log(item)
    
-    return (
+    return (     
       <Layout children={<ViewForm item={item} dates={dates} />}/>
     )
 }

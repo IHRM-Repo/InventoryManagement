@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\SubCategory;
 use App\Models\AssetDate;
 use App\Models\Category;
 use App\Models\Asset;
@@ -19,16 +20,22 @@ class AssetController extends Controller
     public function index()
     {
         return Inertia::render('Home', [
-            'assets'                    => Asset::select(
-                                                            'id',   
-                                                            'item_name',
-                                                            'serial_no',
-                                                            'purchase_price', 
-                                                            'depreciation_rate', 
-                                                            'quantity', 'category_id'
-                                                        )->get(),
+            'assets'                    => DB::table('assets')
+                                                    ->join('categories', 'assets.category_id', '=', 'categories.id')
+                                                    ->select(
+                                                                'assets.id',   
+                                                                'assets.item_name',
+                                                                'assets.serial_no',
+                                                                'assets.purchase_price', 
+                                                                'assets.depreciation_rate', 
+                                                                'assets.quantity',
+                                                                'categories.category_name'
+                                                            )
+                                                    ->orderBy('quantity', 'DESC')
+                                                    ->get(),
 
             'categories'                => Category::select('id','category_name')->get(),
+            'subCategories'             => SubCategory::select('id', 'sub_category_name', 'category_id')->get(),
             
             'assetQuantiesByCategory'   => DB::table('assets')
                                                 ->join('categories', 'assets.category_id', '=', 'categories.id')
@@ -70,6 +77,10 @@ class AssetController extends Controller
         $assetCategory  =   Category::create([
             'category_name'     =>  $request->category,
         ]);
+
+        // SubCategory::create([
+        //     'sub_category_name' 
+        // ])
         
         $storedItem =   Asset::create([
             'serial_no'         =>  $request->serialNo,
@@ -106,7 +117,8 @@ class AssetController extends Controller
                                         'assets.asset_code',
                                         'assets.condition',
                                         'categories.category_name',
-                                        'units.unit_name'
+                                        'units.unit_name',
+                                        'units.unit_measure',
                                     )
                             ->where('assets.id', '=', $id)
                             ->get();
@@ -154,7 +166,7 @@ class AssetController extends Controller
         return Inertia::render('Actions/Edit', [
             'item'  =>  $asset,
             'dates' =>  $storeDates,
-            'units' =>  Unit::select('unit_name', 'unit_measure')->get(),
+            'units' =>  Unit::select('unit_name')->get(),
         ]);
     }
 

@@ -6,7 +6,7 @@ import AddItemFormModal from './Modals/AddItemFormModal';
 import { useForm } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 
-const Dashboard = ({ store, categories, chartData, message, lowStore }) => { 
+const Dashboard = ({ store, categories, chartData, message, lowStore, subCategoryOptions }) => { 
     // console.log(chartData)
     const [ addNewItemBtn, setAddNewItemBtn ] = useState(false)  
     const [ isAlertVisible, setIsAlertVisible] = useState(false)
@@ -149,7 +149,7 @@ const Dashboard = ({ store, categories, chartData, message, lowStore }) => {
                 } 
             </div>
            
-            <AddItemFormModal isOpen={addNewItemBtn} onClose={handleAddItemModalClose} categoryOptions={categories} />
+            <AddItemFormModal isOpen={addNewItemBtn} onClose={handleAddItemModalClose} categoryOptions={categories} subCategoryOptions={subCategoryOptions} />
         </div>
                       
         </section>
