@@ -9,12 +9,15 @@ import InputLabel from '@/Components/InputLabel';
 const AddItemFormModal = ({ isOpen, onClose, categoryOptions, subCategoryOptions }) => {
     const cancelButtonRef = useRef(null) 
 
+    console.log(categoryOptions);
+
     const { data, setData, post, errors, processing, recentlySuccessful } = useForm({
         serialNo: '',
         itemName: '',
         category: '',
         subCategory: '',
         quantity: '',
+        purchasePrice: '',
         depreciationRate: '',
         remarks: '',
         returnable: false,
@@ -105,7 +108,18 @@ const AddItemFormModal = ({ isOpen, onClose, categoryOptions, subCategoryOptions
                                                                 value={data.deliveryDate}
                                                                 onChange={(e) =>setData('deliveryDate', e.target.value)} />
                                                             <InputError className="mt-2" message={errors.deliveryDate} />
-                                                        </div>  
+                                                        </div> 
+                                                        <div>
+                                                            <InputLabel htmlFor="purchasePrice" value="Purchase Price (Ksh.)" />
+                                                            <TextInput
+                                                                id="purchasePrice"
+                                                                className="mt-1 block w-full"
+                                                                value={data.purchasePrice}
+                                                                onChange={(e) => setData('purchasePrice', e.target.value)}
+                                                                isFocused                                                            
+                                                            />
+                                                            <InputError className="mt-2" message={errors.depreciationRate} />
+                                                        </div>    
                                                                            
                                                         <div>
                                                             <InputLabel htmlFor="depreciationRate" value="Depreciation Rate(%)" />
