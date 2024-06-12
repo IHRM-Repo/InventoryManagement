@@ -35,10 +35,10 @@ const Navbar = () => {
     return (
         <div className="hidden bg-white my-8 mx-2 p-2 rounded-md md:flex">
             <ul className="mt-4 mx-2 space-y-4">
-                <Link href='/' className={url === '/' ? 'bg-blue-400' : ''}>
-                    <li className={`flex flex-row hover:text-white hover:bg-blue-400 hover:rounded-md m-2 ${url === '/' ? 'bg-blue-500 rounded-md' : ''}`}>
-                        <HomeIcon className={`w-10 p-2 ${url === '/' ? 'text-white' : ''}`} />
-                        <h1 className={`p-2 ${url === '/' ? 'text-white' : ''}`}>Dashboard</h1>
+                <Link href='/dashboard' className={url === '/dashboard' ? 'bg-blue-400' : ''}>
+                    <li className={`flex flex-row hover:text-white hover:bg-blue-400 hover:rounded-md m-2 ${url === '/dashboard' ? 'bg-blue-500 rounded-md' : ''}`}>
+                        <HomeIcon className={`w-10 p-2 ${url === '/dashboard' ? 'text-white' : ''}`} />
+                        <h1 className={`p-2 ${url === '/dashboard' ? 'text-white' : ''}`}>Dashboard</h1>
                     </li>
                 </Link>                
             

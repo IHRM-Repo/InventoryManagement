@@ -60,7 +60,7 @@ class StoreItemController extends Controller
         ]);
 
         
-        return redirect('/')->with('message', 'Successfully added new item');
+        return redirect('/dashboard')->with('message', 'Successfully added new item');
     }
 
     /**
@@ -119,7 +119,7 @@ class StoreItemController extends Controller
                                 'remarks' => $request->remarks
                             ]);
 
-        return redirect('/')->with('message', 'Successfully updated item');;
+        return redirect('/dashboard')->with('message', 'Successfully updated item');;
     }
 
     /**
@@ -132,6 +132,6 @@ class StoreItemController extends Controller
         
         $storeItemDate = StoreItemDates::where('store_item_id', $id)->delete();
 
-        return redirect('/')->with('message', 'Successfully deleted item');
+        return redirect('/dashboard')->with('message', 'Successfully deleted item');
     }
 }

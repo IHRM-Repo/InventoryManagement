@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ExcelFileImportController;
 use App\Http\Controllers\ProfileController;
@@ -21,9 +22,14 @@ use Inertia\Inertia;
 */
 
 
-Route::get('/', function () {
-    return Inertia::render('Auth/Login');
-});
+//Login and Logout
+Route::get('', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('', [AuthenticatedSessionController::class, 'store'])->name('login');
+Route::delete('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+
+Route::get('/registration', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('/registration', [RegisteredUserController::class, 'store']);
 
 Route::get('/dashboard', [AssetController::class, 'index'])->name('dashboard');
 Route::post('/dashboard', [AssetController::class, 'store'])->name('item.store');
@@ -34,13 +40,11 @@ Route::delete('/delete/{id}', [AssetController::class, 'destroy'])->name('item.d
 
 
 
-
 Route::get('/reports', [ReportsController::class, 'index'])->name('report');
 Route::get('/dead-stock', [ReportsController::class, 'depreciatedStock'])->name('dead-stock');
 Route::get('/export/dead-stock', [ReportsController::class, 'exportDeadStock'])->name('exportDeadStock');
 
 Route::post('/import-excel', [ExcelFileImportController::class, 'upload'])->name('excel.upload');
-Route::resource('/dashboard', StoreItemController::class);
 
 
 // Route::middleware('auth')->group(function () {
