@@ -3,7 +3,7 @@ import Navbar from '@/Pages/Navbar';
 const Layout = ({children}) => {
     return(
         <>           
-            <div className='flex justfy-between'>
+            <div className='flex justify-between mx-12 my-4'>
                 <h1 className='text-center text-lg p-2 text-blue-400'>IHRM Store Management</h1>
                 <button>Logout</button>
             </div>         

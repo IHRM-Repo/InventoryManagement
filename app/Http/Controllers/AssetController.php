@@ -156,6 +156,7 @@ class AssetController extends Controller
                                             'assets.quantity',
                                             'assets.asset_code',
                                             'assets.condition',
+                                            'assets.returnable',
                                             'categories.category_name',
                                             'units.unit_name'
                                         )
@@ -166,7 +167,7 @@ class AssetController extends Controller
         return Inertia::render('Actions/Edit', [
             'item'  =>  $asset,
             'dates' =>  $storeDates,
-            'units' =>  Unit::select('unit_name')->get(),
+            'units' =>  Unit::select('unit_name', 'unit_measure')->get(),
         ]);
     }
 

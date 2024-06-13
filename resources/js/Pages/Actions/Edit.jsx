@@ -5,7 +5,7 @@ import Layout from "@/Components/Layout";
 const Edit = ({ item, units, unit }) => {
     
     return (
-      <Layout children={<EditForm item={item} units={units} />}/>
+      <Layout children={<EditForm item={item[0]} units={units} />}/>
     )
 }
 
