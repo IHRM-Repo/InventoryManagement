@@ -31,26 +31,19 @@ Route::delete('/logout', [AuthenticatedSessionController::class, 'destroy'])->na
 Route::get('/registration', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('/registration', [RegisteredUserController::class, 'store']);
 
-Route::get('/dashboard', [AssetController::class, 'index'])->name('dashboard');
-Route::post('/dashboard', [AssetController::class, 'store'])->name('item.store');
-Route::get('{id}/view', [AssetController::class, 'show'])->name('item.show');
-Route::get('{id}/edit', [AssetController::class, 'edit'])->name('item.edit');
-Route::patch('{id}', [AssetController::class, 'update'])->name('item.update');
-Route::delete('/delete/{id}', [AssetController::class, 'destroy'])->name('item.destroy');
+Route::get('/dashboard', [AssetController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::post('/dashboard', [AssetController::class, 'store'])->name('item.store')->middleware('auth');
+Route::get('{id}/view', [AssetController::class, 'show'])->name('item.show')->middleware('auth');
+Route::get('{id}/edit', [AssetController::class, 'edit'])->name('item.edit')->middleware('auth');
+Route::patch('{id}', [AssetController::class, 'update'])->name('item.update')->middleware('auth');
+Route::delete('/delete/{id}', [AssetController::class, 'destroy'])->name('item.destroy')->middleware('auth');
+
+Route::get('/reports', [ReportsController::class, 'index'])->name('report')->middleware('auth');
+Route::get('/dead-stock', [ReportsController::class, 'depreciatedStock'])->name('dead-stock')->middleware('auth');
+Route::get('/export/dead-stock', [ReportsController::class, 'exportDeadStock'])->name('exportDeadStock')->middleware('auth');
+
+Route::post('/import-excel', [ExcelFileImportController::class, 'upload'])->name('excel.upload')->middleware('auth');
 
 
-
-Route::get('/reports', [ReportsController::class, 'index'])->name('report');
-Route::get('/dead-stock', [ReportsController::class, 'depreciatedStock'])->name('dead-stock');
-Route::get('/export/dead-stock', [ReportsController::class, 'exportDeadStock'])->name('exportDeadStock');
-
-Route::post('/import-excel', [ExcelFileImportController::class, 'upload'])->name('excel.upload');
-
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
 
 require __DIR__.'/auth.php';
